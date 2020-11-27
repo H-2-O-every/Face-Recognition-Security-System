@@ -1,1 +1,8 @@
 read me
+#구성
+---
+> 소스파일, Makefile
+
+#실행 방법
+---
+* make all -> make server 만 하면 됩니다.
