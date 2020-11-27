@@ -1,1 +1,8 @@
 READ Me
+# 구성
+---
+>소스 파일, Makefile, testImage.jpg, test.txt
+
+# 실행
+---
+* make all 후에 실행파일과 testImage.jpg를 같은 디렉터리에 넣고, 실행파일의 인자로 서버의 ip와 포트번호(3390)을 지정해주면 됩니다.
