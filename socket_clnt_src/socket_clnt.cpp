@@ -9,6 +9,12 @@ void in_notice(int argc){
 	}
 }
 
+void rm_img_dir(char path[100]{// you must be careful because this func_ use [rm] with option [-rf]
+	char inst[120];
+	sprintf(inst, "rm -rf %s", path);
+	system(inst);
+}
+
 void capt_img(char image_name[100]){
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
