@@ -9,11 +9,11 @@ void in_notice(int argc){
 	}
 }
 
-void capt_img(char image_name[64]){
+void capt_img(char image_name[100]){
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
 
-	char image_name[64];
+	char image_name[100];
 	sprintf(image_name, "capture_image/%d%d%d%d%d%d", tm.tm_year+1900, tm.tm_mon+1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
 	char inst[128] = "raspistill -t 1 -w 2400 -q 7 -o ";
@@ -43,7 +43,7 @@ void sockConnect(int sock, struct sockaddr_in serv_addr){
 	}
 }
 
-void fileAndSockProc(int sock, char image_name[64]){
+void fileAndSockProc(int sock, char image_name[100]){
 	FILE* fp = fopen(image_name, "r");
 
 	char buf[BSIZE];
@@ -57,6 +57,7 @@ void fileAndSockProc(int sock, char image_name[64]){
 
 	int remain = fsize;
 	int b_num = (fsize / BSIZE) + 1;
+	write(sock, image_name, sizeof(char)*100);
 	write(sock, &b_num, sizeof(int));	
 	printf("block number : %d\n", b_num);
 
