@@ -8,8 +8,8 @@
 #include <time.h>
 
 void in_notice(int argc);
-void capt_img(char image_name[64]);
+void capt_img(char image_name[100]);
 void sockInit(int* sock, struct sockaddr_in* serv_addr, int port);
 void sockConnect(int sock, struct sockaddr_in serv_addr);
-void fileAndSockProc(int sock, char image_name[64]);
+void fileAndSockProc(int sock, char image_name[100]);
 void error_handling( char* message);
