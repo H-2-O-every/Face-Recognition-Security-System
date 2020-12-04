@@ -61,35 +61,40 @@ void fileAndSockProc(int sock, char image_name[100]){
 	write(sock, &b_num, sizeof(int));	
 	printf("block number : %d\n", b_num);
 
-	int charity=0;
+	int charity=1;
 	int block_siz_check;
 	
 	for(int i=0; i<b_num; i++){
 		if(remain > BSIZE){
-			fread(buf, BSIZE, 1, fp);
+			if(charity == 1){
+				fread(buf, BSIZE, 1, fp);
+			}
 			block_siz_check = BSIZE;
 			write(sock, &block_siz_check, sizeof(int));
-	LOOP1:
 			write(sock, buf, BSIZE);
 			read(sock, &charity, sizeof(int));
 //			printf("charity %d : %d\n",i, charity);
 			if(charity == 0){
-				goto LOOP1;
+				i--;
 			}
-			charity = 0;
-			remain -= BSIZE;
+			else if(charity == 1){
+				remain -= BSIZE;
+			}
 		}
 		else{
-			fread(buf, remain, 1, fp);
+			if(charity == 1){
+				fread(buf, remain, 1, fp);
+			}
 			block_siz_check = remain;
 			write(sock, &block_siz_check, sizeof(int));
-	LOOP2:
 			write(sock, buf, remain);
 			read(sock, &charity, sizeof(int));
 			if(charity == 0){
-				goto LOOP2;
+				i--;
 			}
-			charity = 0;
+			else if(charity == 1){
+				remain -= remain;
+			}
 		}
 	}
 
