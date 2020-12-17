@@ -1,4 +1,5 @@
 #include "socket_clnt.h"
+#include<unistd.h>
 #define BSIZE 1350
 #define ID 1
 
@@ -110,7 +111,6 @@ void fileAndSockProc(int sock, char image_name[100]){
 			else if(charity == 1){
 				remain -= remain;
 			}
-
 		}
 	}
 */
@@ -151,9 +151,14 @@ LOOP2:
 	fclose(fp);	
 }
 
+int get_retVal(int sock){
+	int retVal;
+	read(sock, &retVal, sizeof(int));
+	return retVal;
+}
+
 void error_handling( char* message ) {
 	fputs( message, stderr );
 	fputc( '\n', stderr );
 	exit(1);
 }
-
