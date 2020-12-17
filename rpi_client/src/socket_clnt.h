@@ -14,4 +14,5 @@ void sockInit(int* sock, struct sockaddr_in* serv_addr, char* argv[]);
 void sockConnect(int sock, struct sockaddr_in serv_addr);
 void fileAndSockProc(int sock, char image_name[100]);
 void error_handling( char* message);
+int get_retVal(int sock);
 void rm_img_dir(char path[100]);//you must be careful because this func_ use [rm] with option [-rf]
