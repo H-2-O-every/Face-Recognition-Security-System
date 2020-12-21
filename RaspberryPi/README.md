@@ -75,3 +75,6 @@ make run
 ```
 The server must be running before client be runned. If not, client process will stop.
 you push the button, than client will capture an image, and send the image to server.
+
+#### 5. Reference
+Our gpio.c source refer to the source of the tistory(https://johnjarrer.tistory.com/m/81)
