@@ -3,6 +3,7 @@
 ## Hardware
 * Raspberry Pi 4
 * Raspberry Pi v2 camera 
+* Button for Raspberry Pi
 
 ## Dependencies
 imagemagick
