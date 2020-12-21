@@ -1,4 +1,4 @@
-# Face Recognition for NVIDIA Jetson (Nano) using TensorRT
+# Face Recognition Security System for NVIDIA Jetson (Nano) using TensorRT
 Face recognition with [Google FaceNet](https://arxiv.org/abs/1503.03832)
 architecture and retrained model by David Sandberg
 ([github.com/davidsandberg/facenet](https://github.com/davidsandberg/facenet))
@@ -9,11 +9,10 @@ layer of the FaceNet model. Link to the repo:
 Moreover, this project uses an adapted version of [PKUZHOU's implementation](https://github.com/PKUZHOU/MTCNN_FaceDetection_TensorRT)
 of the mtCNN for face detection. More info below.
 
+This Project's Jetson Nano source code based on the source of nwesem (https://github.com/nwesem/mtcnn_facenet_cpp_tensorRT)
+
 ## Hardware
 * NVIDIA Jetson Nano
-
-If you want to use a USB camera instead of Raspi Camera set the boolean _isCSICam_ to false in [main.cpp](./src/main.cpp).
-
 
 ## Dependencies
 cuda 10.2 + cudnn 8.0 <br> TensorRT 7.x <br> OpenCV 4.1.1 <br>
@@ -22,6 +21,7 @@ TensorFlow r1.14 (for Python to convert model from .pb to .uff)
 ## Update
 This master branch now uses Jetpack 4.4, so dependencies have slightly changed and tensorflow is not preinstalled anymore. So there is an extra step that takes a few minutes more than before. <br>
 In case you would like to use older versions of Jetpack there is a tag jp4.2.2, that can links to the older implementation.
+
 
 ## Installation
 #### 1. Install Cuda, CudNN, TensorRT, and TensorFlow for Python 
@@ -108,9 +108,9 @@ Done you are ready to build the project!
 
 #### 5. Build the project
 ```bash
-mkdir build && cd build
+cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
-make -j${nproc}
+make -lpthread -j${nproc}
 ```
 If **not** run on Jetson platform set the path to your CUDA and TensorRT installation
 using _-DCUDA_TOOLKIT_ROOTDIR=path/to/cuda_ and _-DTENSORRT_ROOT=path/to/tensorRT_.
@@ -128,33 +128,14 @@ you have opened your terminal and put in the name of the person you want to add.
 ```bash
 ./mtcnn_facenet_cpp_tensorRT
 ```
-Press "**Q**" to quit and to show the stats (fps).
+Press "**Q**" to quit and to show the stats.
 
 _NOTE:_ This step might take a while when done the first time. TensorRT
 now parses and serializes the model from .uff to a runtime engine
 (.engine file). 
 
-## Performance
-Performance on **NVIDIA Jetson Nano**
-* ~60ms +/- 20ms for face detection using mtCNN
-* ~22ms +/- 2ms per face for facenet inference
-* **Total:** ~15fps
-
-Performance on **NVIDIA Jetson AGX Xavier**:
-* ~40ms +/- 20ms for mtCNN 
-* ~9ms +/- 1ms per face for inference of facenet
-* **Total:** ~22fps
   
 ## License
 Please respect all licenses of OpenCV and the data the machine learning models (mtCNN and Google FaceNet)
 were trained on.
 
-## FAQ
-Sometimes the camera driver doesn't close properly that means you will have to restart the __nvargus-daemon__:
-```bash
-sudo systemctl restart nvargus-daemon
-``` 
-
-## Info
-Niclas Wesemann <br>
-[niclaswesemann@gmail.com](mailto:niclas.wesemann@gmail.com) <br>
