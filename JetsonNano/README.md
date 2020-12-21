@@ -11,7 +11,6 @@ of the mtCNN for face detection. More info below.
 
 ## Hardware
 * NVIDIA Jetson Nano
-* Raspberry Pi v2 camera 
 
 If you want to use a USB camera instead of Raspi Camera set the boolean _isCSICam_ to false in [main.cpp](./src/main.cpp).
 
