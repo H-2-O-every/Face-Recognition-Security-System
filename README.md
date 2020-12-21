@@ -20,6 +20,7 @@ This Project's Jetson Nano source code based on the source of nwesem (https://gi
 
 ## Please read README.md in all of JetsonNano, RaspberryPi directories. Each README file describes the flow of each device.
 
-## We used two Raspberry Pi for this project. If you want to use more Raspberry Pi, there is nothing to do you should. Just be careful Raspberry Pi's ID. ( If you want to know about the Raspberry Pi ID, read the README.md in Raspberry Pi Derectory. )
+## Be Careful.
+ We used two Raspberry Pi for this project. If you want to use more Raspberry Pi, there is nothing to do you should. Just be careful Raspberry Pi's ID. ( If you want to know about the Raspberry Pi ID, read the README.md in Raspberry Pi Derectory. )
 
 <br>
